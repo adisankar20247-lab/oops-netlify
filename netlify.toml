@@ -1,0 +1,24 @@
+# Netlify Configuration for Cyber-Scan Dashboard
+
+[build]
+  publish = "src/main/resources/static"
+  command = "npm run build"
+
+# Security & Best-Practice Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Backend API Proxy:
+# When hosting your Spring Boot backend on a cloud platform (e.g. Render, Railway, Fly.io),
+# uncomment and update the redirect below so that /api requests are automatically proxied:
+#
+# [[redirects]]
+#   from = "/api/*"
+#   to = "https://your-backend-api.onrender.com/api/:splat"
+#   status = 200
+#   force = true
